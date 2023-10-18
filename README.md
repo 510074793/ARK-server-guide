@@ -440,7 +440,16 @@ iptables -L -t nat
 ## 端口转发移除
 
 ```
-iptables -t nat -D PREROUTING -p udp --dport 7777 -j REDIRECT --to-port 7777
+#! /bin/bash
+
+# 迷失岛
+iptables -t nat -D PREROUTING -p udp -m udp --dport 7777 -j DNAT --to-destination 10.8.0.2:7777
+iptables -t nat -D PREROUTING -p udp -m udp --dport 7778 -j DNAT --to-destination 10.8.0.2:7778
+iptables -t nat -D PREROUTING -p udp -m udp --dport 27015 -j DNAT --to-destination 10.8.0.2:27015
+# 灭绝
+iptables -t nat -D PREROUTING -p udp -m udp --dport 7779 -j DNAT --to-destination 10.8.0.2:7779
+iptables -t nat -D PREROUTING -p udp -m udp --dport 7780 -j DNAT --to-destination 10.8.0.2:7780
+iptables -t nat -D PREROUTING -p udp -m udp --dport 27016 -j DNAT --to-destination 10.8.0.2:27016
 ```
 
 ## 添加云主机防火墙规则
