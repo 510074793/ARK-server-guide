@@ -431,6 +431,17 @@ iptables -t nat -A PREROUTING -p udp -m udp --dport 7779 -j DNAT --to-destinatio
 iptables -t nat -A PREROUTING -p udp -m udp --dport 7780 -j DNAT --to-destination 10.8.0.2:7780
 iptables -t nat -A PREROUTING -p udp -m udp --dport 27016 -j DNAT --to-destination 10.8.0.2:27016
 ```
+## 查看端口转发
+
+```
+iptables -L -t nat
+```
+
+## 端口转发移除
+
+```
+iptables -t nat -D PREROUTING -p udp --dport 7777 -j REDIRECT --to-port 7777
+```
 
 ## 添加云主机防火墙规则
 
